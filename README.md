@@ -1,5 +1,5 @@
 # dockerAction
-+ `docker info` 查看dockerd的信息
+# `docker info` 查看dockerd的信息
 ```
 Client:
  Context:    default
@@ -55,8 +55,8 @@ Server:
   https://6kx4zyno.mirror.aliyuncs.com/
  Live Restore Enabled: false
 ```
-+ `docker search` 查找镜像
-  + `docker search golang` 
+# `docker search` 查找镜像
++ `docker search golang` 
 ```
 NAME                                               DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 golang                                             Go (golang) is a general purpose, higher-lev…   4232      [OK]       
@@ -72,8 +72,8 @@ openwhisk/actionloop-golang-v1.11                  Apache OpenWhisk runtime for 
 puppet/gogrpc                                      A container for building golang projects tha…   1                    [OK]
 okteto/golang-http-template                                                                        0                    
 ```
-+ `docker pull` 拉取镜像
-  + `docker image pull golang:1.13.15` 拉取指定tag的golang镜像
+# `docker pull` 拉取镜像
++ `docker image pull golang:1.13.15` 拉取指定tag的golang镜像
 ```
 1.13.15: Pulling from library/golang
 d6ff36c9ec48: Pull complete 
@@ -87,7 +87,7 @@ Digest: sha256:8ebb6d5a48deef738381b56b1d4cd33d99a5d608e0d03c5fe8dfa3f68d41a1f8
 Status: Downloaded newer image for golang:1.13.15
 docker.io/library/golang:1.13.15
 ```
-+ `docker image ls` `docker images` 获取本地镜像列表
+# `docker image ls` `docker images` 获取本地镜像列表
 ```
 REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
 nginx        latest    605c77e624dd   7 months ago    141MB
@@ -96,8 +96,8 @@ ubuntu       latest    ba6acccedd29   10 months ago   72.8MB
 centos       latest    5d0da3dc9764   11 months ago   231MB
 golang       1.13.15   d6f3656320fe   2 years ago     803MB
 ```
-+ `docker image history` 镜像构建的历史信息
-  + `docker image history golang:1.13.15` 
+# `docker image history` 镜像构建的历史信息
++ `docker image history golang:1.13.15` 
 ```
 IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
 d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B        
@@ -114,8 +114,8 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 <missing>      2 years ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B        
 <missing>      2 years ago   /bin/sh -c #(nop) ADD file:4b03b5f551e3fbdf4…   114MB  
 ```
-+ `docker image inspect`查看镜像具体信息
-  + `docker image inspect redis` 
+# `docker image inspect`查看镜像具体信息
++ `docker image inspect redis` 
 ```
 [
     {
@@ -234,53 +234,53 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 ]
 
 ```
-+ `docker image tag`给镜像重新打tag
-  + `docker image tag nginx:1.19.2 upperpeng.com/nginx:1.19.2`   
-  + `docker image rm upperpeng.com/nginx:1.19.2`
+# `docker image tag`给镜像重新打tag
++ `docker image tag nginx:1.19.2 upperpeng.com/nginx:1.19.2`   
++ `docker image rm upperpeng.com/nginx:1.19.2`
 ```
 REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
 nginx                 1.19.2    7e4d58f0e5f3   23 months ago   133MB
 upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 ```
-+ `docker image prune` 清理未使用的镜像（未跑容器）
-+ `docker image rm` `docker rmi` 
-+ `docker image tag` 给镜像打标签
-+ `docker image push` 推送镜像到hub
-+ `docker image save` 将镜像导出为tar文件
-+ `docker image load` 将tar文件导入为镜像
-+ `docker image import` 导入容器tar文件为镜像
-+ `docker image build` 从dockerfile构建镜像
+# `docker image prune` 清理未使用的镜像（未跑容器）
+# `docker image rm` `docker rmi` 
+# `docker image tag` 给镜像打标签
+# `docker image push` 推送镜像到hub
+# `docker image save` 将镜像导出为tar文件
+# `docker image load` 将tar文件导入为镜像
+# `docker image import` 导入容器tar文件为镜像
+# `docker image build` 从dockerfile构建镜像
 
 
-+ `docker container run` 从镜像启动容器
-  + `docker container run -itd --name myweb -p 9999:80 nginx:latest` 将本地9999端口映射给容器80端口
+# `docker container run` 从镜像启动容器
++ `docker container run -itd --name myweb -p 9999:80 nginx:latest` 将本地9999端口映射给容器80端口
  ```
  d3fe3507f9cf23d564970adeae0d339a1ec7a6d90a5f86e0457531236b4c5fb8
  
  CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
 d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 seconds   0.0.0.0:9999->80/tcp   myweb
  ```
-+ `docker create` 创建容器，但未启动
-+ `docker container ls` `docker container ls -a`
-+ `docker container inspect`
-+ `docker container exec`
-+ `docker container start`
-+ `docker container restart` 
-+ `docker container stop`
-+ `docker container kill`
-+ `docker container logs`
-+ `docker container rm`
-+ `docker container prune`
-+ `docker container top`
-+ `docker container cp`
-+ `docker container port`
-  + `docker container port myweb`
+# `docker create` 创建容器，但未启动
+# `docker container ls` `docker container ls -a`
+# `docker container inspect`
+# `docker container exec`
+# `docker container start`
+# `docker container restart` 
+# `docker container stop`
+# `docker container kill`
+# `docker container logs`
+# `docker container rm`
+# `docker container prune`
+# `docker container top`
+# `docker container cp`
+# `docker container port`
++ `docker container port myweb`
 ```
 80/tcp -> 0.0.0.0:9999 容器的80端口对应本地的9999端口
 ```
-+ `docker container rename`
-  + `docker container rename web myweb` 将容器名字从web修改为myweb
-+ `docker container stats`
-+ `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
-+ `docker container commit`
-+ `docker container update`
+# `docker container rename`
++ `docker container rename web myweb` 将容器名字从web修改为myweb
+# `docker container stats`
+# `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
+# `docker container commit`
+# `docker container update`
