@@ -31,6 +31,14 @@ Status: Downloaded newer image for golang:1.13.15
 docker.io/library/golang:1.13.15
 ```
 + `docker image ls`  获取本地镜像列表
+```
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+nginx        latest    605c77e624dd   7 months ago    141MB
+redis        latest    7614ae9453d1   8 months ago    113MB
+ubuntu       latest    ba6acccedd29   10 months ago   72.8MB
+centos       latest    5d0da3dc9764   11 months ago   231MB
+golang       1.13.15   d6f3656320fe   2 years ago     803MB
+```
 + `docker image history golang:1.13.15` 镜像构建的历史信息
 ```
 IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
@@ -48,7 +56,125 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 <missing>      2 years ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B        
 <missing>      2 years ago   /bin/sh -c #(nop) ADD file:4b03b5f551e3fbdf4…   114MB  
 ```
-+ `docker image inspect` 查看镜像具体信息
++ `docker image inspect redis` 查看镜像具体信息
+```
+[
+    {
+        "Id": "sha256:7614ae9453d1d87e740a2056257a6de7135c84037c367e1fffa92ae922784631",
+        "RepoTags": [
+            "redis:latest"
+        ],
+        "RepoDigests": [
+            "redis@sha256:db485f2e245b5b3329fdc7eff4eb00f913e09d8feb9ca720788059fdc2ed8339"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2021-12-21T12:42:49.755107412Z",
+        "Container": "13d25f53410417c5220c8dfe8bd49f06abdbcd69faa62a9b877de02464bb04a3",
+        "ContainerConfig": {
+            "Hostname": "13d25f534104",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "6379/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.12",
+                "REDIS_VERSION=6.2.6",
+                "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-6.2.6.tar.gz",
+                "REDIS_DOWNLOAD_SHA=5b2b8b7a50111ef395bf1c1d5be11e6e167ac018125055daa8b5c2317ae131ab"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"redis-server\"]"
+            ],
+            "Image": "sha256:e093f59d716c95cfce82c676f099b960cc700432ab531388fcedf79932fc81ec",
+            "Volumes": {
+                "/data": {}
+            },
+            "WorkingDir": "/data",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "20.10.7",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "6379/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.12",
+                "REDIS_VERSION=6.2.6",
+                "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-6.2.6.tar.gz",
+                "REDIS_DOWNLOAD_SHA=5b2b8b7a50111ef395bf1c1d5be11e6e167ac018125055daa8b5c2317ae131ab"
+            ],
+            "Cmd": [
+                "redis-server"
+            ],
+            "Image": "sha256:e093f59d716c95cfce82c676f099b960cc700432ab531388fcedf79932fc81ec",
+            "Volumes": {
+                "/data": {}
+            },
+            "WorkingDir": "/data",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 112691373,
+        "VirtualSize": 112691373,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/9ceaf0abe063216337e51e8b8903162c5591756d40d83fce2bba5e5917cfa9d6/diff:/var/lib/docker/overlay2/dffa714dbd90cc2d81052bf7085c820fa526cf5616e22f306b5a9a373386cd9f/diff:/var/lib/docker/overlay2/c97ccd14148e48bfd06846af8b2b2bac14b23b72507643182a8ad4583b952873/diff:/var/lib/docker/overlay2/e488559edf139d93a6141d59fcd6f6bf6f7963a4897f4f8a7fe178cdb2383c62/diff:/var/lib/docker/overlay2/ad49d021b6e6ec252efa770a440fd41563e421845442fd422e69d7bcfefb9b84/diff",
+                "MergedDir": "/var/lib/docker/overlay2/1b15f7d574500cbea715557a2574821917a8ce2c408b3e286466a7908add7e44/merged",
+                "UpperDir": "/var/lib/docker/overlay2/1b15f7d574500cbea715557a2574821917a8ce2c408b3e286466a7908add7e44/diff",
+                "WorkDir": "/var/lib/docker/overlay2/1b15f7d574500cbea715557a2574821917a8ce2c408b3e286466a7908add7e44/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:2edcec3590a4ec7f40cf0743c15d78fb39d8326bc029073b41ef9727da6c851f",
+                "sha256:9b24afeb7c2f21e50a686ead025823cd2c6e9730c013ca77ad5f115c079b57cb",
+                "sha256:4b8e2801e0f956a4220c32e2c8b0a590e6f9bd2420ec65453685246b82766ea1",
+                "sha256:529cdb636f61e95ab91a62a51526a84fd7314d6aab0d414040796150b4522372",
+                "sha256:9975392591f2777d6bf4d9919ad1b2c9afa12f9a9b4d260f45025ec3cc9b18ed",
+                "sha256:8e5669d8329116b8444b9bbb1663dda568ede12d3dbcce950199b582f6e94952"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
+
+```
 + `docker image prune` 清理未使用的镜像（未跑容器）
 + `docker image rm` `docker rmi` 
 + `docker image tag` 给镜像打标签
