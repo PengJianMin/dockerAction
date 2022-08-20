@@ -261,7 +261,7 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 seconds   0.0.0.0:9999->80/tcp   myweb
  ```
 # `docker create` 创建容器，但未启动
-# `docker container ls` `docker container ls -a`
+# `docker container ls` `docker container ls -a` `docker ps` `docker ps -a` 列出容器
 # `docker container inspect` 查看容器详细信息
 + `docker container inspect myweb`
 ```
