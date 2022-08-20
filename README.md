@@ -259,7 +259,7 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
  CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
 d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 seconds   0.0.0.0:9999->80/tcp   myweb
  ```
-# `docker create` 创建容器，但未启动
+# `docker create` 创建新容器，但未启动
 # `docker container ls` `docker container ls -a` `docker ps` `docker ps -a` 列出容器
 # `docker container inspect` 查看容器详细信息
 + `docker container inspect myweb`
@@ -499,16 +499,16 @@ d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 
 [root@192 ~]# docker container exec -it myweb /bin/bash
 root@d3fe3507f9cf:/#
 ```
-# `docker container start`
-# `docker container restart` 
-# `docker container stop`
-# `docker container kill`
-# `docker container logs`
-# `docker container rm`
-# `docker container prune`
-# `docker container top`
-# `docker container cp`
-# `docker container port`
+# `docker container start` 启动一个或多个容器
+# `docker container restart` 重启一个或多个正在运行的容器
+# `docker container stop` 停止一个或多个正在运行的容器
+# `docker container kill` 杀死一个或多个正在运行的容器
+# `docker container logs` 获取容器的日志
+# `docker container rm` 删除一个或多个容器
+# `docker container prune` 删除所有已停止的容器
+# `docker container top` 展示容器中运行的进程
+# `docker container cp` 在本地文件系统和容器之间复制文件和文件夹
+# `docker container port` 列出所有端口映射或者某一容器的端口映射情况
 + `docker container port myweb`
 + `docker container port d3fe`
 ```
@@ -516,7 +516,7 @@ root@d3fe3507f9cf:/#
 ```
 # `docker container rename` 重命名容器
 + `docker container rename web myweb` 将容器名字从web修改为myweb
-# `docker container stats`
+# `docker container stats` 显示容器实时的资源使用情况
 # `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
-# `docker container commit`
-# `docker container update`
+# `docker container commit` 对容器的“变化”生成镜像
+# `docker container update` 更新容器的配置信息
