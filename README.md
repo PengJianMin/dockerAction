@@ -514,7 +514,7 @@ root@d3fe3507f9cf:/#
 ```
 80/tcp -> 0.0.0.0:9999 容器的80端口对应本地的9999端口
 ```
-# `docker container rename`
+# `docker container rename` 重命名容器
 + `docker container rename web myweb` 将容器名字从web修改为myweb
 # `docker container stats`
 # `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
