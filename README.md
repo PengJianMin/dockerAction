@@ -1,5 +1,5 @@
 # dockerAction
-# `docker info` 查看dockerd的信息
+# `docker info` 查看dockerd系统级的信息
 ```
 Client:
  Context:    default
@@ -55,7 +55,7 @@ Server:
   https://6kx4zyno.mirror.aliyuncs.com/
  Live Restore Enabled: false
 ```
-# `docker search` 查找镜像
+# `docker search` 在hub中查找镜像
 + `docker search golang` 
 ```
 NAME                                               DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
@@ -96,7 +96,7 @@ ubuntu       latest    ba6acccedd29   10 months ago   72.8MB
 centos       latest    5d0da3dc9764   11 months ago   231MB
 golang       1.13.15   d6f3656320fe   2 years ago     803MB
 ```
-# `docker image history` 镜像构建的历史信息
+# `docker image history` 展示该镜像构建的历史信息
 + `docker image history golang:1.13.15` 
 ```
 IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
@@ -244,7 +244,6 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 ```
 # `docker image prune` 清理未使用的镜像（未跑容器）
 # `docker image rm` `docker rmi` 
-# `docker image tag` 给镜像打标签
 # `docker image push` 推送镜像到hub
 # `docker image save` 将镜像导出为tar文件
 # `docker image load` 将tar文件导入为镜像
