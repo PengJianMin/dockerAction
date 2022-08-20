@@ -231,7 +231,7 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 ]
 
 ```
-+ `docker image tag nginx:1.19.2 upperpeng.com/nginx:1.19.2` 给镜像重新打tag
++ `docker image tag nginx:1.19.2 upperpeng.com/nginx:1.19.2` 给镜像重新打tag  `docker image rm upperpeng.com/nginx:1.19.2`
 ```
 REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
 nginx                 1.19.2    7e4d58f0e5f3   23 months ago   133MB
@@ -245,3 +245,25 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 + `docker image load` 将tar文件导入为镜像
 + `docker image import` 导入容器tar文件为镜像
 + `docker image build` 从dockerfile构建镜像
+
+
++ `docker container run` 从镜像启动容器
++ `docker create` 创建容器，但未启动
++ `docker container ls` 
++ `docker container inspect`
++ `docker container exec`
++ `docker container start`
++ `docker container restart` 
++ `docker container stop`
++ `docker container kill`
++ `docker container logs`
++ `docker container rm`
++ `docker container prune`
++ `docker container top`
++ `docker container cp`
++ `docker container port`
++ `docker container rename`
++ `docker container stats`
++ `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
++ `docker container commit`
++ `docker container update`
