@@ -1,4 +1,60 @@
 # dockerAction
++ `docker info` 查看dockerd的信息
+```
+Client:
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  app: Docker App (Docker Inc., v0.9.1-beta3)
+  buildx: Docker Buildx (Docker Inc., v0.8.2-docker)
+  scan: Docker Scan (Docker Inc., v0.17.0)
+
+Server:
+ Containers: 1
+  Running: 0
+  Paused: 0
+  Stopped: 1
+ Images: 5
+ Server Version: 19.03.15
+ Storage Driver: overlay2
+  Backing Filesystem: xfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 894b81a4b802e4eb2a91d1ce216b8817763c29fb
+ runc version: 425e105d5a03fabd737a126ad93d62a9eeede87f
+ init version: fec3683
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 4.18.0-240.15.1.el8_3.x86_64
+ Operating System: CentOS Linux 8
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 2
+ Total Memory: 1.75GiB
+ Name: 192.168.81.130
+ ID: RF53:NP3W:WDBT:MDZ7:VNVS:F3SR:XFFZ:HBW6:SFOT:PLFQ:ZBNO:LBHE
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Registry Mirrors:
+  https://6kx4zyno.mirror.aliyuncs.com/
+ Live Restore Enabled: false
+```
 
 + `docker search golang` 查找golang相关的镜像
 ```
@@ -30,7 +86,7 @@ Digest: sha256:8ebb6d5a48deef738381b56b1d4cd33d99a5d608e0d03c5fe8dfa3f68d41a1f8
 Status: Downloaded newer image for golang:1.13.15
 docker.io/library/golang:1.13.15
 ```
-+ `docker image ls`  获取本地镜像列表
++ `docker image ls` `docker images` 获取本地镜像列表
 ```
 REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
 nginx        latest    605c77e624dd   7 months ago    141MB
