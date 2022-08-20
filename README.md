@@ -494,7 +494,12 @@ d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 
 ]
 
 ```
-# `docker container exec`
+# `docker container exec` 在一个运行容器中执行一个命令
++ `docker container exec -it myweb /bin/bash` 利用bash进入容器
+```
+[root@192 ~]# docker container exec -it myweb /bin/bash
+root@d3fe3507f9cf:/#
+```
 # `docker container start`
 # `docker container restart` 
 # `docker container stop`
