@@ -683,7 +683,52 @@ d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB 
 ## `CMD` 运行容器时执行的命令/在运行容器时可被覆盖
 ## `ENTRYPOINT` 运行容器时执行的命令/在运行容器时指定命令和参数传递给ENTRYPOINT执行命令的参数
 ## `ARG` 定义构建参数
+```
+[root@192 myweb]# cat Dockerfile 
+FROM ubuntu:latest
+
+LABEL user="upper"
+LABEL email="upper@outlook.com"
+
+#仅声明，不生效
+EXPOSE 80
+
+#将myweb添加到对应目录
+ADD myweb /opt/web 
+
+ENTRYPOINT ["/opt/web/myweb"]
+```
 # `docker image build . `
 + `-t` 给镜像打tag
 + `-f` 指定要构建的dockerfile
 + `--build-arg` 构建参数
+```
+[root@192 myweb]# docker build . -t upperpeng.com/web:0.0.1 
+Sending build context to Docker daemon  6.186MB
+Step 1/6 : FROM ubuntu:latest
+ ---> ba6acccedd29
+Step 2/6 : LABEL user="upper"
+ ---> Running in daa1bde42a89
+Removing intermediate container daa1bde42a89
+ ---> 7611cddf63f2
+Step 3/6 : LABEL email="upper@outlook.com"
+ ---> Running in 37a13d5c1d08
+Removing intermediate container 37a13d5c1d08
+ ---> 622bda938dc5
+Step 4/6 : EXPOSE 80
+ ---> Running in ef82212bbfbf
+Removing intermediate container ef82212bbfbf
+ ---> 84729d5b5103
+Step 5/6 : ADD myweb /opt/web
+ ---> 9c0580019108
+Step 6/6 : ENTRYPOINT ["/opt/web/myweb"]
+ ---> Running in b72f3da70bf0
+Removing intermediate container b72f3da70bf0
+ ---> 743a379b50e7
+Successfully built 743a379b50e7
+Successfully tagged upperpeng.com/web:0.0.1
+
+[root@192 myweb]# docker images 
+REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
+upperpeng.com/web     0.0.1     743a379b50e7   8 seconds ago    79MB
+```
