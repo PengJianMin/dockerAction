@@ -72,7 +72,8 @@ openwhisk/actionloop-golang-v1.11                  Apache OpenWhisk runtime for 
 puppet/gogrpc                                      A container for building golang projects tha…   1                    [OK]
 okteto/golang-http-template                                                                        0                    
 ```
-# `docker pull` 拉取镜像
+# docker image
+## `docker pull` 拉取镜像
 + `docker image pull golang:1.13.15` 拉取指定tag的golang镜像
 ```
 1.13.15: Pulling from library/golang
@@ -87,7 +88,7 @@ Digest: sha256:8ebb6d5a48deef738381b56b1d4cd33d99a5d608e0d03c5fe8dfa3f68d41a1f8
 Status: Downloaded newer image for golang:1.13.15
 docker.io/library/golang:1.13.15
 ```
-# `docker image ls` `docker images` 获取本地镜像列表
+## `docker image ls` `docker images` 获取本地镜像列表
 ```
 REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
 nginx        latest    605c77e624dd   7 months ago    141MB
@@ -96,7 +97,7 @@ ubuntu       latest    ba6acccedd29   10 months ago   72.8MB
 centos       latest    5d0da3dc9764   11 months ago   231MB
 golang       1.13.15   d6f3656320fe   2 years ago     803MB
 ```
-# `docker image history` 展示该镜像构建的历史信息
+## `docker image history` 展示该镜像构建的历史信息
 + `docker image history golang:1.13.15` 
 ```
 IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
@@ -114,7 +115,7 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 <missing>      2 years ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B        
 <missing>      2 years ago   /bin/sh -c #(nop) ADD file:4b03b5f551e3fbdf4…   114MB  
 ```
-# `docker image inspect`查看镜像具体信息
+## `docker image inspect`查看镜像具体信息
 + `docker image inspect redis` 
 ```
 [
@@ -242,16 +243,16 @@ REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
 nginx                 1.19.2    7e4d58f0e5f3   23 months ago   133MB
 upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 ```
-# `docker image prune` 清理未使用的镜像（未跑容器）
-# `docker image rm` `docker rmi` 删除一个或多个镜像
-# `docker image push` 推送镜像到hub
-# `docker image save` 将镜像导出为tar文件
-# `docker image load` 将tar文件导入为镜像
-# `docker image import` 导入容器tar文件为镜像
-# `docker image build` 从dockerfile构建镜像
+## `docker image prune` 清理未使用的镜像（未跑容器）
+## `docker image rm` `docker rmi` 删除一个或多个镜像
+## `docker image push` 推送镜像到hub
+## `docker image save` 将镜像导出为tar文件
+## `docker image load` 将tar文件导入为镜像
+## `docker image import` 导入容器tar文件为镜像
+## `docker image build` 从dockerfile构建镜像
 
-
-# `docker container run` 从镜像启动容器
+# docker container
+## `docker container run` 从镜像启动容器
 + `docker container run -itd --name myweb -p 9999:80 -v /data/myweb:/data nginx:latest` 将本地9999端口映射给容器80端口，使用`-d`让其运行在后台，否则一退出容器就会被挂起，`-i`让其保持输入流
   + `-i` 使用交互模式，始终保持输入流开放
   + `-t` 分配一个伪终端
@@ -267,8 +268,8 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
  CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
 d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 seconds   0.0.0.0:9999->80/tcp   myweb
  ```
-# `docker create` 创建新容器，但未启动
-# `docker container ls` `docker container ls -a` `docker ps` `docker ps -a` 列出容器
+## `docker create` 创建新容器，但未启动
+## `docker container ls` `docker container ls -a` `docker ps` `docker ps -a` 列出容器
 + `docker container ls` 只列出运行中的容器
 + `docker container ls -a` 列出所有容器
 ```
@@ -280,7 +281,7 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS   
 c16b3010be25   nginx          "/docker-entrypoint.…"   5 minutes ago   Exited (0) 12 seconds ago                          competent_swartz
 d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   11 hours ago    Up 37 minutes               0.0.0.0:9999->80/tcp   myweb
 ```
-# `docker container inspect` 查看容器详细信息
+## `docker container inspect` 查看容器详细信息
 + `docker container inspect myweb`
 ```
 [
@@ -518,11 +519,11 @@ d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   11 hours ago    Up 37 m
 [root@192 ~]# docker container exec -it myweb /bin/bash
 root@d3fe3507f9cf:/#
 ```
-# `docker container start` 启动一个或多个容器
-# `docker container restart` 重启一个或多个正在运行的容器
-# `docker container stop` 停止一个或多个正在运行的容器
-# `docker container kill` 杀死一个或多个正在运行的容器
-# `docker container logs` 获取容器的日志
+## `docker container start` 启动一个或多个容器
+## `docker container restart` 重启一个或多个正在运行的容器
+## `docker container stop` 停止一个或多个正在运行的容器
+## `docker container kill` 杀死一个或多个正在运行的容器
+## `docker container logs` 获取容器的日志
 + `docker container logs -f myweb`
 ```
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
@@ -573,7 +574,7 @@ root@d3fe3507f9cf:/#
 172.17.0.1 - - [21/Aug/2022:01:11:52 +0000] "GET / HTTP/1.1" 200 615 "-" "curl/7.61.1" "-"
 172.17.0.1 - - [21/Aug/2022:01:13:47 +0000] "GET / HTTP/1.1" 200 8 "-" "curl/7.61.1" "-"
 ```
-# `docker container rm` 删除一个或多个容器
+## `docker container rm` 删除一个或多个容器
 + `docker container rm` 只能删除非运行状态的容器
 + `docker container rm -f` 强制删除容器
 ```
@@ -582,8 +583,8 @@ Error response from daemon: You cannot remove a running container c16b3010be2540
 [root@192 ~]# docker container rm -f c16
 c16
 ```
-# `docker container prune` 删除所有已停止的容器
-# `docker container top` 展示容器中运行的进程
+## `docker container prune` 删除所有已停止的容器
+## `docker container top` 展示容器中运行的进程
 + `docker container top myweb`
 ```
 [root@192 ~]# docker top myweb
@@ -592,7 +593,7 @@ root                1811                1793                0                   
 101                 1868                1811                0                   09:01               pts/0               00:00:00            nginx: worker process
 101                 1869                1811                0                   09:01               pts/0               00:00:00            nginx: worker process
 ```
-# `docker container cp` 在本地文件系统和容器之间复制文件和文件夹
+## `docker container cp` 在本地文件系统和容器之间复制文件和文件夹
 + `docker container cp myweb:/usr/share/nginx/html/index.html .` 从容器复制到本地
 + `docker container cp ./index.html myweb:/usr/share/nginx/html/index.html` 从本地复制到容器
 ```
@@ -651,15 +652,15 @@ Commercial support is available at
 [root@192 ~]# curl localhost:9999
 1234567
 ```
-# `docker container port` 列出所有端口映射或者某一容器的端口映射情况
+## `docker container port` 列出所有端口映射或者某一容器的端口映射情况
 + `docker container port myweb`
 + `docker container port d3fe`
 ```
 80/tcp -> 0.0.0.0:9999 容器的80端口对应本地的9999端口
 ```
-# `docker container rename` 重命名容器
+## `docker container rename` 重命名容器
 + `docker container rename web myweb` 将容器名字从web修改为myweb
-# `docker container stats` 显示容器实时的资源使用情况
+## `docker container stats` 显示容器实时的资源使用情况
 ```
 [root@192 ~]# docker container stats
 CONTAINER ID   NAME               CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O         PIDS
@@ -671,10 +672,10 @@ CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O        
 d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB   50.3MB / 0B   3
 
 ```
-# `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
-# `docker container commit` 对容器的“变化”生成镜像
-# `docker container update` 更新容器的配置信息
-# `docker volume create` 创建数据卷volume，创建后可以使用volume的名字进行挂载
+## `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
+## `docker container commit` 对容器的“变化”生成镜像
+## `docker container update` 更新容器的配置信息
+## `docker volume create` 创建数据卷volume，创建后可以使用volume的名字进行挂载
 # dockerfile
 ## `FROM` 指定基础镜像
 ## `MAINTAINER` 指定维护者信息
@@ -711,7 +712,7 @@ ADD myweb /data/web
 ENTRYPOINT ["/data/web/myweb"]
 
 ```
-# `docker image build . `
+## `docker image build . `
 + `-t` 给镜像打tag
 + `-f` 指定要构建的dockerfile
 + `--build-arg` 构建参数
