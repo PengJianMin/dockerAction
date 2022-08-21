@@ -666,3 +666,24 @@ d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB 
 # `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
 # `docker container commit` 对容器的“变化”生成镜像
 # `docker container update` 更新容器的配置信息
+# `docker volume create` 创建数据卷volume，创建后可以使用volume的名字进行挂载
+# dockerfile
+## `FROM` 指定基础镜像
+## `MAINTAINER` 指定维护者信息
+## `RUN` 构建镜像运行的指令
+## `ADD` 拷贝文件或目录到容器中/可指定压缩文件进行自动解压或url进行指定用下载
+## `COPY` 拷贝文件或目录到容器中
+## `ENV` 设置容器环境变量
+## `EXPOSE` 声明容器暴露的端口（仅声明，不起实际作用）
+## `VOLUME` 指定挂载卷/自动创建匿名卷并进行挂载
+## `WORKDIR` 指定工作目录，类似在linux系统中使用cd命令后到达的目录
+## `USER` 指定执行命令的用户
+## `HEALTHCHECK` 健康检查 
++ `HEALTHECHECK --interval=5m --timeout=3s --retries=3 CMD command || exit1`
+## `CMD` 运行容器时执行的命令/在运行容器时可被覆盖
+## `ENTRYPOINT` 运行容器时执行的命令/在运行容器时指定命令和参数传递给ENTRYPOINT执行命令的参数
+## `ARG` 定义构建参数
+# `docker image build . `
++ `-t` 给镜像打tag
++ `-f` 指定要构建的dockerfile
++ `--build-arg` 构建参数
