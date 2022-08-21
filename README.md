@@ -243,7 +243,7 @@ nginx                 1.19.2    7e4d58f0e5f3   23 months ago   133MB
 upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 ```
 # `docker image prune` 清理未使用的镜像（未跑容器）
-# `docker image rm` `docker rmi` 
+# `docker image rm` `docker rmi` 删除一个或多个镜像
 # `docker image push` 推送镜像到hub
 # `docker image save` 将镜像导出为tar文件
 # `docker image load` 将tar文件导入为镜像
