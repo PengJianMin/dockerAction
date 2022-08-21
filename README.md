@@ -504,6 +504,56 @@ root@d3fe3507f9cf:/#
 # `docker container stop` 停止一个或多个正在运行的容器
 # `docker container kill` 杀死一个或多个正在运行的容器
 # `docker container logs` 获取容器的日志
++ `docker container logs -f myweb`
+```
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2022/08/20 14:31:27 [notice] 1#1: using the "epoll" event method
+2022/08/20 14:31:27 [notice] 1#1: nginx/1.21.5
+2022/08/20 14:31:27 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/08/20 14:31:27 [notice] 1#1: OS: Linux 4.18.0-240.15.1.el8_3.x86_64
+2022/08/20 14:31:27 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/08/20 14:31:27 [notice] 1#1: start worker processes
+2022/08/20 14:31:27 [notice] 1#1: start worker process 30
+2022/08/20 14:31:27 [notice] 1#1: start worker process 31
+172.17.0.1 - - [20/Aug/2022:14:38:20 +0000] "GET / HTTP/1.1" 200 615 "-" "curl/7.61.1" "-"
+2022/08/20 15:20:01 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/08/20 15:20:01 [notice] 30#30: gracefully shutting down
+2022/08/20 15:20:01 [notice] 30#30: exiting
+2022/08/20 15:20:01 [notice] 30#30: exit
+2022/08/20 15:20:01 [notice] 31#31: gracefully shutting down
+2022/08/20 15:20:01 [notice] 31#31: exiting
+2022/08/20 15:20:01 [notice] 31#31: exit
+2022/08/20 15:20:01 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2022/08/20 15:20:01 [notice] 1#1: worker process 30 exited with code 0
+2022/08/20 15:20:01 [notice] 1#1: worker process 31 exited with code 0
+2022/08/20 15:20:01 [notice] 1#1: exit
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2022/08/21 01:01:24 [notice] 1#1: using the "epoll" event method
+2022/08/21 01:01:24 [notice] 1#1: nginx/1.21.5
+2022/08/21 01:01:24 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/08/21 01:01:24 [notice] 1#1: OS: Linux 4.18.0-240.15.1.el8_3.x86_64
+2022/08/21 01:01:24 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/08/21 01:01:24 [notice] 1#1: start worker processes
+2022/08/21 01:01:24 [notice] 1#1: start worker process 23
+2022/08/21 01:01:24 [notice] 1#1: start worker process 24
+172.17.0.1 - - [21/Aug/2022:01:01:42 +0000] "GET / HTTP/1.1" 200 615 "-" "curl/7.61.1" "-"
+172.17.0.1 - - [21/Aug/2022:01:04:15 +0000] "GET /50x.html HTTP/1.1" 200 497 "-" "curl/7.61.1" "-"
+172.17.0.1 - - [21/Aug/2022:01:11:52 +0000] "GET / HTTP/1.1" 200 615 "-" "curl/7.61.1" "-"
+172.17.0.1 - - [21/Aug/2022:01:13:47 +0000] "GET / HTTP/1.1" 200 8 "-" "curl/7.61.1" "-"
+```
 # `docker container rm` 删除一个或多个容器
 # `docker container prune` 删除所有已停止的容器
 # `docker container top` 展示容器中运行的进程
