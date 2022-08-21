@@ -508,6 +508,38 @@ root@d3fe3507f9cf:/#
 # `docker container prune` 删除所有已停止的容器
 # `docker container top` 展示容器中运行的进程
 # `docker container cp` 在本地文件系统和容器之间复制文件和文件夹
++ `docker container cp myweb:/usr/share/nginx/html/index.html .` 从容器复制到本地
++ `docker container cp ./index.html myweb:/usr/share/nginx/html/index.html` 从本地复制到容器
+```
+[root@192 ~]# docker container cp myweb:/usr/share/nginx/html/index.html .
+[root@192 ~]# cat index.html 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@192 ~]# cat > index.html 
+1234567
+
+```
 # `docker container port` 列出所有端口映射或者某一容器的端口映射情况
 + `docker container port myweb`
 + `docker container port d3fe`
