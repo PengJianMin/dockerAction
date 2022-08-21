@@ -759,3 +759,23 @@ CONTAINER ID   IMAGE                       COMMAND             CREATED          
 [root@192 myweb]# curl localhost:1234
 48c5c0ec16f8:1661066260648343423[root@192 myweb]# curl localhost:1234
 ```
+# 通过容器编译Golang程序
++ `docker run -it -v /root/myweb:/data/ golang:1.13.15 bash -c "cd /data; go build ."`
++ `docker run -it -v $(pwd) golang:1.13.15 bash -c "cd /data; go build ."`
+```
+[root@192 myweb]# ll
+total 12
+-rw-r--r--. 1 root root 215 Aug 21 15:15 Dockerfile
+-rw-r--r--. 1 root root  36 Aug 21 11:19 go.mod
+-rw-r--r--. 1 root root 304 Aug 21 11:19 main.go
+[root@192 myweb]# pwd
+/root/myweb
+[root@192 myweb]# docker run -it -v /root/myweb:/data/ golang:1.13.15 bash -c "cd /data; go build ."
+[root@192 myweb]# ll
+total 7292
+-rw-r--r--. 1 root root     215 Aug 21 15:15 Dockerfile
+-rw-r--r--. 1 root root      36 Aug 21 11:19 go.mod
+-rw-r--r--. 1 root root     304 Aug 21 11:19 main.go
+-rwxr-xr-x. 1 root root 7454642 Aug 21 16:23 myweb
+```
++ `docker run -it -v /root/myweb:/data/ -e GOPROXY=https://goproxy.cn golang:1.13.15 bash -c "cd /data; go build ."`
