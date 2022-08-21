@@ -252,7 +252,7 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 
 
 # `docker container run` 从镜像启动容器
-+ `docker container run -itd --name myweb -p 9999:80 nginx:latest` 将本地9999端口映射给容器80端口
++ `docker container run -itd --name myweb -p 9999:80 -v /data/myweb:/data nginx:latest` 将本地9999端口映射给容器80端口，使用`-d`让其运行在后台，否则一退出容器就会被挂起，`-i`让其保持输入流
  ```
  d3fe3507f9cf23d564970adeae0d339a1ec7a6d90a5f86e0457531236b4c5fb8
  
@@ -261,6 +261,17 @@ d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   49 seconds ago   Up 47 
  ```
 # `docker create` 创建新容器，但未启动
 # `docker container ls` `docker container ls -a` `docker ps` `docker ps -a` 列出容器
++ `docker container ls` 只列出运行中的容器
++ `docker container ls -a` 列出所有容器
+```
+[root@192 ~]# docker container ls 
+CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS          PORTS                  NAMES
+d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   11 hours ago   Up 37 minutes   0.0.0.0:9999->80/tcp   myweb
+[root@192 ~]# docker container ls -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                      PORTS                  NAMES
+c16b3010be25   nginx          "/docker-entrypoint.…"   5 minutes ago   Exited (0) 12 seconds ago                          competent_swartz
+d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   11 hours ago    Up 37 minutes               0.0.0.0:9999->80/tcp   myweb
+```
 # `docker container inspect` 查看容器详细信息
 + `docker container inspect myweb`
 ```
@@ -555,6 +566,14 @@ root@d3fe3507f9cf:/#
 172.17.0.1 - - [21/Aug/2022:01:13:47 +0000] "GET / HTTP/1.1" 200 8 "-" "curl/7.61.1" "-"
 ```
 # `docker container rm` 删除一个或多个容器
++ `docker container rm` 只能删除非运行状态的容器
++ `docker container rm -f` 强制删除容器
+```
+[root@192 ~]# docker container rm c16
+Error response from daemon: You cannot remove a running container c16b3010be2540d17cfc8a8f8d624a7b97a60256e4fb1ed7c43b9c48c01ebbac. Stop the container before attempting removal or force remove
+[root@192 ~]# docker container rm -f c16
+c16
+```
 # `docker container prune` 删除所有已停止的容器
 # `docker container top` 展示容器中运行的进程
 + `docker container top myweb`
