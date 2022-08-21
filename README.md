@@ -670,7 +670,7 @@ d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB 
 # dockerfile
 ## `FROM` 指定基础镜像
 ## `MAINTAINER` 指定维护者信息
-## `RUN` 构建镜像运行的指令
+## `RUN` 构建镜像时，运行额外的指令，如创建目录mkdir等等
 ## `ADD` 拷贝文件或目录到容器中/可指定压缩文件进行自动解压或url进行指定用下载
 ## `COPY` 拷贝文件或目录到容器中
 ## `ENV` 设置容器环境变量
@@ -680,7 +680,7 @@ d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB 
 ## `USER` 指定执行命令的用户
 ## `HEALTHCHECK` 健康检查 
 + `HEALTHECHECK --interval=5m --timeout=3s --retries=3 CMD command || exit1`
-## `CMD` 运行容器时执行的命令/在运行容器时可被覆盖
+## `CMD` 运行容器时执行的命令/在运行容器时可被覆盖，该命令会被加到ENTRYPOINT后边在启动时执行，区别时它可以被覆盖
 ## `ENTRYPOINT` 运行容器时执行的命令/在运行容器时指定命令和参数传递给ENTRYPOINT执行命令的参数
 ## `ARG` 定义构建参数
 ```
@@ -693,42 +693,61 @@ LABEL email="upper@outlook.com"
 #仅声明，不生效
 EXPOSE 80
 
-#将myweb添加到对应目录
-ADD myweb /opt/web 
+#在容器中执行命令
+RUN mkdir -p /data/web
 
-ENTRYPOINT ["/opt/web/myweb"]
+#将myweb添加到对应目录
+ADD myweb /data/web 
+
+#容器启动时执行的命令
+ENTRYPOINT ["/data/web/myweb"]
+
 ```
 # `docker image build . `
 + `-t` 给镜像打tag
 + `-f` 指定要构建的dockerfile
 + `--build-arg` 构建参数
 ```
-[root@192 myweb]# docker build . -t upperpeng.com/web:0.0.1 
+[root@192 myweb]# docker build . -t upperpeng.com/myweb:0.0.1
 Sending build context to Docker daemon  6.186MB
-Step 1/6 : FROM ubuntu:latest
+Step 1/7 : FROM ubuntu:latest
  ---> ba6acccedd29
-Step 2/6 : LABEL user="upper"
- ---> Running in daa1bde42a89
-Removing intermediate container daa1bde42a89
- ---> 7611cddf63f2
-Step 3/6 : LABEL email="upper@outlook.com"
- ---> Running in 37a13d5c1d08
-Removing intermediate container 37a13d5c1d08
- ---> 622bda938dc5
-Step 4/6 : EXPOSE 80
- ---> Running in ef82212bbfbf
-Removing intermediate container ef82212bbfbf
- ---> 84729d5b5103
-Step 5/6 : ADD myweb /opt/web
- ---> 9c0580019108
-Step 6/6 : ENTRYPOINT ["/opt/web/myweb"]
- ---> Running in b72f3da70bf0
-Removing intermediate container b72f3da70bf0
- ---> 743a379b50e7
-Successfully built 743a379b50e7
-Successfully tagged upperpeng.com/web:0.0.1
+Step 2/7 : LABEL user="upper"
+ ---> Running in b2289999c164
+Removing intermediate container b2289999c164
+ ---> 0b1896ac78f3
+Step 3/7 : LABEL email="upper@outlook.com"
+ ---> Running in ecd8d8f39dc3
+Removing intermediate container ecd8d8f39dc3
+ ---> f0eb519b686b
+Step 4/7 : EXPOSE 80
+ ---> Running in c3cf6da7c6cf
+Removing intermediate container c3cf6da7c6cf
+ ---> 169f77dc245d
+Step 5/7 : RUN mkdir -p /data/web
+ ---> Running in d08bd8cdf400
+Removing intermediate container d08bd8cdf400
+ ---> 8854f53c44e2
+Step 6/7 : ADD myweb /data/web
+ ---> a5adb40db30c
+Step 7/7 : ENTRYPOINT ["/data/web/myweb"]
+ ---> Running in 6aac9a859e94
+Removing intermediate container 6aac9a859e94
+ ---> 02e2beb5fea2
+Successfully built 02e2beb5fea2
+Successfully tagged upperpeng.com/myweb:0.0.1
+[root@192 myweb]# docker images
+REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
+upperpeng.com/myweb   0.0.1     02e2beb5fea2   6 seconds ago   79MB
 
-[root@192 myweb]# docker images 
-REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
-upperpeng.com/web     0.0.1     743a379b50e7   8 seconds ago    79MB
+[root@192 myweb]# docker run -itd -p 1234:80 upperpeng.com/myweb:0.0.1
+48c5c0ec16f8cc7554c628334e26f8857207a9b4ddd9d5d8d63a0c7b806e2afe
+[root@192 myweb]# lsof -i:1234
+COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+docker-pr 5340 root    4u  IPv6  88211      0t0  TCP *:search-agent (LISTEN)
+[root@192 myweb]# docker ps -a
+CONTAINER ID   IMAGE                       COMMAND             CREATED          STATUS          PORTS                  NAMES
+48c5c0ec16f8   upperpeng.com/myweb:0.0.1   "/data/web/myweb"   18 seconds ago   Up 17 seconds   0.0.0.0:1234->80/tcp   laughing_cray
+[root@192 myweb]# curl localhost:1234
+48c5c0ec16f8:1661066260648343423[root@192 myweb]# curl localhost:1234
 ```
