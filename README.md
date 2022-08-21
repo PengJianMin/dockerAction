@@ -253,7 +253,15 @@ upperpeng.com/nginx   1.19.2    7e4d58f0e5f3   23 months ago   133MB
 
 # `docker container run` 从镜像启动容器
 + `docker container run -itd --name myweb -p 9999:80 -v /data/myweb:/data nginx:latest` 将本地9999端口映射给容器80端口，使用`-d`让其运行在后台，否则一退出容器就会被挂起，`-i`让其保持输入流
+  + `-i` 使用交互模式，始终保持输入流开放
+  + `-t` 分配一个伪终端
+  + `-it` 在容器中利用打开的伪终端进行交互操作
+  + `-d` 让容器可以运行在后台（默认运行在前台，无法在后台运行）
+  + `-v` 挂载数据卷volume
+  + `-p` 暴露端口
+  + `-e` 指定容器内的环境变量
  ```
+ [root@192 ~]# docker container run -itd --name myweb -p 9999:80 -v /data/myweb:/data nginx:latest
  d3fe3507f9cf23d564970adeae0d339a1ec7a6d90a5f86e0457531236b4c5fb8
  
  CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
