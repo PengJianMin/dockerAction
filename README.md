@@ -235,7 +235,7 @@ d6f3656320fe   2 years ago   /bin/sh -c #(nop) WORKDIR /go                   0B
 ]
 
 ```
-# `docker image tag`给镜像重新打tag
+## `docker image tag`给镜像重新打tag
 + `docker image tag nginx:1.19.2 upperpeng.com/nginx:1.19.2`   
 + `docker image rm upperpeng.com/nginx:1.19.2`
 ```
@@ -513,7 +513,7 @@ d3fe3507f9cf   nginx:latest   "/docker-entrypoint.…"   11 hours ago    Up 37 m
 ]
 
 ```
-# `docker container exec` 在一个运行容器中执行一个命令
+## `docker container exec` 在一个运行容器中执行一个命令
 + `docker container exec -it myweb /bin/bash` 利用bash进入容器
 ```
 [root@192 ~]# docker container exec -it myweb /bin/bash
