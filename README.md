@@ -779,3 +779,11 @@ total 7292
 -rwxr-xr-x. 1 root root 7454642 Aug 21 16:23 myweb
 ```
 + `docker run -it -v /root/myweb:/data/ -e GOPROXY=https://goproxy.cn golang:1.13.15 bash -c "cd /data; go build ."`
+
+# 和hub通信
++ `docker login`
++ `docker container -t myweb:0.0.1 upperpeng/myweb:0.0.1`
++ `docker push`
+
+# 自建私有镜像仓库
++ harbor
