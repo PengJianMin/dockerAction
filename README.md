@@ -557,6 +557,14 @@ root@d3fe3507f9cf:/#
 # `docker container rm` 删除一个或多个容器
 # `docker container prune` 删除所有已停止的容器
 # `docker container top` 展示容器中运行的进程
++ `docker container top myweb`
+```
+[root@192 ~]# docker top myweb
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                1811                1793                0                   09:01               pts/0               00:00:00            nginx: master process nginx -g daemon off;
+101                 1868                1811                0                   09:01               pts/0               00:00:00            nginx: worker process
+101                 1869                1811                0                   09:01               pts/0               00:00:00            nginx: worker process
+```
 # `docker container cp` 在本地文件系统和容器之间复制文件和文件夹
 + `docker container cp myweb:/usr/share/nginx/html/index.html .` 从容器复制到本地
 + `docker container cp ./index.html myweb:/usr/share/nginx/html/index.html` 从本地复制到容器
@@ -625,6 +633,17 @@ Commercial support is available at
 # `docker container rename` 重命名容器
 + `docker container rename web myweb` 将容器名字从web修改为myweb
 # `docker container stats` 显示容器实时的资源使用情况
+```
+[root@192 ~]# docker container stats
+CONTAINER ID   NAME               CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O         PIDS
+c16b3010be25   competent_swartz   0.00%     4.102MiB / 1.75GiB   0.23%     586B / 0B        1.09MB / 32.8kB   3
+d3fe3507f9cf   myweb              0.00%     15.5MiB / 1.75GiB    0.86%     14.2kB / 9.2kB   50.3MB / 0B       3
+
+[root@192 ~]# docker container stats myweb
+CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O          BLOCK I/O     PIDS
+d3fe3507f9cf   myweb     0.00%     15.5MiB / 1.75GiB   0.86%     14.2kB / 9.2kB   50.3MB / 0B   3
+
+```
 # `docker container export` 将容器直接导出为tar文件，和`docker image import`搭配使用
 # `docker container commit` 对容器的“变化”生成镜像
 # `docker container update` 更新容器的配置信息
